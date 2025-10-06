@@ -143,6 +143,15 @@ Staging area также называют index (англ. «каталог») и
 
 ### Цикл файла в Git 
 
+```mermaid
+cycleDiagram
+    untracked(неотслеживаемы)->>staged(в списке на коммит)+tracked: git add
+    staged(в списке на коммит)+tracked->>tracked(отслеживаемый): git commit
+    tracked(отслеживаемый)->>modified(измененный): Изменения
+    modified(измененный)->>staged(в списке на коммит)+tracked: git add
+    staged(в списке на коммит)+tracked->>modified(измененный): Изменения
+```
+
 1. Файл только что создали. Git ещё не отслеживает его содержимое. Состояние: untracked.
 2. Файл добавили в staging area с помощью git add. Состояние: staged (+ tracked).
  a. Возможно, изменили файл ещё раз. Состояния: staged, modified (+ tracked).
